@@ -1,0 +1,84 @@
+<%=render "top"%>
+<div class="white_box">
+  <h1><%=@survey.title%></h1>
+  <h3>편집하기</h3>
+    <form action="/admin/add_paragraph/<%=@survey.id%>">
+      <p>로마자 참고: I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII, XIII, XIV, XV, XVI, XVII, XVIII, XIX, XX</p>
+      질문 묶음 추가:<input type="text" name="title">
+      <input type="submit" value="추가">
+    </form>
+    <hr>
+    <br><br>
+  <% @survey.paragraphs.each do |paragraph|%>
+    <div class ="paragraph_box">
+      
+      <form action="/admin/edit_paragraph/<%=paragraph.id%>">
+        <input type="text" name="title" value="<%=paragraph.title%>">
+        <input type="submit" value="변경">
+      </form>
+      <div class="add_box">
+        <form action="/admin/add_box/<%=paragraph.id%>" method="post">
+        생성할 질문 타입 선택<br>
+          <input type="radio" name="box_type" value="1">객관식<br>
+          <input type="radio" name="box_type" value = "2">주관식<br>
+          <input type="radio" name="box_type" value= "3">그냥 이미지 넣기<br>
+          <input type="submit" value="질문 생성">
+        </form>
+      </div>
+      <br>
+      <%paragraph.boxes.each do |box|%>
+        <%if box.content_type == 3%>
+          <div class="add_box">
+            <img src="/images/<%=box.image_path%>"/><br>
+            이미지 변경
+            <form action="/admin/image_change/<%=box.id%>" method="post" enctype="multipart/form-data">
+              <input type="file" name="file">
+              <input type="submit">
+            </form>
+          </div>
+        <%elsif box.content_type == 1%>
+          <div class="add_box">
+            <h4>객관식 질문 변경 및 보기 변경</h4>
+            <form action="/admin/edit_box/<%=box.id%>" method="post">
+              <textarea class="question_box" name="question"><%=box.question%></textarea>
+              <input type="submit" value="변경">
+            </form>
+            <form action="/admin/add_example/<%=box.id%>" method="post">
+            생성할 보기 타입 선택<br>
+              <input type="radio" name="example_type" value="1">일반 보기<br>
+              <input type="radio" name="example_type" value= "2">기타(etc) 입력가능<br>
+              <input type="submit" value="보기 생성">
+            </form><br>
+           
+          <% box.examples.each do |example|%>
+            <%if example.example_type == 1%>
+              <form action="/admin/edit_example/<%=example.id%>" method="post">
+                <input type="text" name="content" value="<%=example.content%>">
+                <input type="submit" value="보기 수정">
+              <a href="/admin/delete_example/<%=example.id%>">삭제</a>
+              </form>
+            <%else%>
+              <form action="/admin/edit_example/<%=example.id%>" method="post">
+                <input type="text" name="content" value="<%=example.content%>">
+                <input type="submit" value="기타 수정">
+              <a href="/admin/delete_example/<%=example.id%>">삭제</a>
+              </form>
+            <%end%>
+          <%end%>
+          </div>
+
+        <%else%>
+          <div class="add_box">
+            <h4>주관식 질문 변경</h4>
+            <form action="/admin/edit_box/<%=box.id%>" method="post">
+              <textarea class="question_box" name="question"><%=box.question%></textarea>
+              <input type="submit" value="변경">
+            </form>
+          </div>
+        <%end%>
+
+      <%end%>
+    </div>
+  <%end%>
+
+</div>

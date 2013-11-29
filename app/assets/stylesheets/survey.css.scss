@@ -5,5 +5,10 @@
 body {
   background-color:#DEE3F1;
   margin:0 auto;
-
 }
+
+.white_box  {
+background-color:white; margin:0 auto; width:980px; border-radius:20px;  -moz-box-shadow:    3px 3px 3px 3px #888;
+  -webkit-box-shadow: 3px 3px 3px 3px #888;
+    box-shadow:         3px 3px 3px 3px #888; padding-left:20px; padding-top:10px; margin-top:10px; padding-bottom:20px; margin-bottom:20px;
+  }

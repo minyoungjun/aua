@@ -1,55 +1,47 @@
-<div style="background:url('/images/top_bar.jpg'); margin:0 auto; width:100%; text-align:center;">
-  <img src="/images/top_image.jpg"/>
-</div>
-<div style="background-color:white; margin:0 auto; width:980px; border-radius:20px;  -moz-box-shadow:    3px 3px 3px 3px #888;
-  -webkit-box-shadow: 3px 3px 3px 3px #888;
-    box-shadow:         3px 3px 3px 3px #888; padding-left:20px; padding-top:10px; margin-top:10px;" >
-  <h1>대학행정교육원 설문조사</h1>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
-  <p>설문</p>
 
-</div>
-<div style="width:100%; background-color:#ececec; margin:0 auto; text-align:center;">
-  <img src="/images/copyright.jpg">
+<%=render "top"%>
+
+<div class="white_box" >
+  <% @surveys.each do |survey|%>
+    <form action="/survey/submit_process/<%=survey.id%>" method="post">
+    <h1><%=survey.title%></h1>
+    <hr>
+    <div style="border:1px solid black; margin:0 auto; width: 800px; margin-bottom:10px; padding: 5px 5px 5px 5px;"> 
+      <p><%=survey.content%></p>
+    </div>
+
+    <%survey.paragraphs.each do |paragraph|%>
+      <div class="paragraph_box" style="border:none;">
+        <h2><%=paragraph.title%></h2>
+        <%paragraph.boxes.each do |box|%>
+          <%if box.content_type == 3%>
+            <img src="/images/<%=box.image_path%>"/><br>
+          <%elsif box.content_type == 2%>
+            <h3><%=box.question%></h3>
+            <textarea class="question_box" name="box_answer_<%=box.id%>"></textarea>
+          <%else%>
+            <h3><%=box.question%></h3>
+            <%box.examples.each do |example|%>
+            
+              <p class="etc_input">
+                <input type="radio" name="example_<%=box.id%>" value="<%=example.id%>">
+                <%=example.content%>
+                <%if example.example_type==2%>
+                  <input type="text" class="etc_input" name="etc_<%=example.id%>">
+                <%end%>
+              </p>
+            <%end%>
+          <%end%>
+
+        <%end%>
+
+
+      </div>
+
+    <%end%>
+
+    <input type="submit" value ="설문 제출">
+    </form>
+  <%end%>
+
 </div>

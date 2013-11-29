@@ -1,0 +1,25 @@
+<%=render "top"%>
+<div class="white_box">
+  <h1><%=@survey.title%></h1>
+  <h3>결과 보기</h3>
+  <% @survey.paragraphs.each do |paragraph|%>
+    <h2><%=paragraph.title%></h2>
+    <% paragraph.boxes.each do |box|%>
+      <h3><%=box.question%></h3>
+      <%if box.content_type == 2%>
+        <% box.longanswers.each do |long|%>
+          <p><%= long.content%></p>
+        <%end%>
+      <%end%>
+      <% box.examples.each do |example|%>
+        <p><%=example.content%> <%=example.answers.count%></p>
+        <%if example.example_type == 2%>
+          <% example.answers.each do |answer|%>
+            <p><%=answer.etc_answer%></p>
+          <%end%>
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+
+</div>
