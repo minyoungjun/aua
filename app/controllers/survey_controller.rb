@@ -4,6 +4,11 @@ class SurveyController < ApplicationController
     @surveys = Survey.all
   end
 
+  def view
+
+    @survey = Survey.find(params[:id])
+
+  end
   def submit_process
   
     survey = Survey.find(params[:id])
