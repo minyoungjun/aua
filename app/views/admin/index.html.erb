@@ -5,6 +5,7 @@
   <a href="/admin/new_survey"><h1>설문 만들기</h1></a>
   <% @surveys.each do |survey|%>
     <a href="/admin/edit_survey/<%=survey.id%>"><h2><%=survey.title%> 수정하기</h2></a>
+    <a href="/admin/result/<%=survey.id%>"><h2><%=survey.title%> 결과보기</h2></a>
   <%end%>
 
 </div>

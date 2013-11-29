@@ -1,9 +1,32 @@
 #coding:utf-8
 
 class AdminController < ApplicationController
+  before_filter :is_admin, :except => [:login, :login_process]
 
   def index
     @surveys = Survey.all
+  end
+
+  def login
+
+  end
+
+  def login_process
+
+    if params[:idid] == "admin" && params[:password] == "moon1009"
+      session[:admin] = "admin"
+      redirect_to :action => "index"
+    else
+      redirect_to :back
+    end
+
+  end
+
+  def logout
+
+    reset_session
+    redirect_to :action => "login"
+
   end
 
   def result
