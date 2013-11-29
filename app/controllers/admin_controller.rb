@@ -11,6 +11,12 @@ class AdminController < ApplicationController
 
   end
 
+  def destroy_survey
+    survey = Survey.find(params[:id])
+    survey.destroy
+    redirect_to :action => "index"
+
+  end
 
   def new_survey
 
