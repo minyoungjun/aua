@@ -19,9 +19,10 @@
       <div class="add_box">
         <form action="/admin/add_box/<%=paragraph.id%>" method="post">
         생성할 질문 타입 선택<br>
-          <input type="radio" name="box_type" value="1">객관식<br>
+          <input type="radio" name="box_type" value="1" selected="selected">객관식<br>
           <input type="radio" name="box_type" value = "2">주관식<br>
           <input type="radio" name="box_type" value= "3">그냥 이미지 넣기<br>
+          <input type="radio" name="box_type" value= "4">중복응답가능 객관식<br>
           <input type="submit" value="질문 생성">
         </form>
       </div>
@@ -36,9 +37,13 @@
               <input type="submit">
             </form>
           </div>
-        <%elsif box.content_type == 1%>
+        <%elsif box.content_type == 1 || box.content_type == 4%>
           <div class="add_box">
-            <h4>객관식 질문 변경 및 보기 변경</h4>
+            <%if box.content_type == 1%>
+              <h4>객관식 질문 변경 및 보기 변경</h4>
+            <%else%>
+              <h4>중복응답가능 질문 및 보기 변경</h4>
+            <%end%>
             <form action="/admin/edit_box/<%=box.id%>" method="post">
               <textarea class="question_box" name="question"><%=box.question%></textarea>
               <input type="submit" value="변경">

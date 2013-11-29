@@ -21,7 +21,7 @@ class SurveyController < ApplicationController
           long.save
         else
           box.examples.each do |example|
-            if params["example_"+box.id.to_s].to_i == example.id
+            if params["example_"+ example.id.to_s].to_i == example.id
               answer = Answer.new
               answer.example_id = example.id
               if example.example_type == 2

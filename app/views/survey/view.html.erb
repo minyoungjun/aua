@@ -23,7 +23,7 @@
           <%box.examples.each do |example|%>
           
             <p class="etc_input">
-              <input type="radio" name="example_<%=box.id%>" value="<%=example.id%>">
+              <input <%if box.content_type == 4%> type="checkbox"<%else%> type="radio"<%end%> name="example_<%=example.id%>" value="<%=example.id%>">
               <%=example.content%>
               <%if example.example_type==2%>
                 <input type="text" class="etc_input" name="etc_<%=example.id%>">
