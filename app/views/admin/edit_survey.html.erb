@@ -1,4 +1,8 @@
+<script>
+  document.body.scrollTop = document.body.scrollHeight;
+</script>
 <%=render "top"%>
+
 <div class="white_box">
   <h1><%=@survey.title%> 편집하기</h1>
 
@@ -26,17 +30,6 @@
         <input type="text" name="title" value="<%=paragraph.title%>">
         <input type="submit" value="변경">
       </form>
-      <div class="add_box">
-        <form action="/admin/add_box/<%=paragraph.id%>" method="post">
-        생성할 질문 타입 선택<br>
-          <input type="radio" name="box_type" value="1" selected="selected">객관식<br>
-          <input type="radio" name="box_type" value = "2">주관식<br>
-          <input type="radio" name="box_type" value= "3">그냥 이미지 넣기<br>
-          <input type="radio" name="box_type" value= "4">중복응답가능 객관식<br>
-          <input type="radio" name="box_type" value="5">가로로 펼쳐진 객관식(정도 평가)<br>
-          <input type="submit" value="질문 생성">
-        </form>
-      </div>
       <br>
       <%paragraph.boxes.each do |box|%>
         <%if box.content_type == 3%>
@@ -96,6 +89,17 @@
         <%end%>
 
       <%end%>
+      <div class="add_box">
+        <form action="/admin/add_box/<%=paragraph.id%>" method="post">
+        생성할 질문 타입 선택<br>
+          <input type="radio" name="box_type" value="1" selected="selected">객관식<br>
+          <input type="radio" name="box_type" value = "2">주관식<br>
+          <input type="radio" name="box_type" value= "3">그냥 이미지 넣기<br>
+          <input type="radio" name="box_type" value= "4">중복응답가능 객관식<br>
+          <input type="radio" name="box_type" value="5">가로로 펼쳐진 객관식(정도 평가)<br>
+          <input type="submit" value="질문 생성">
+        </form>
+      </div>
     </div>
   <%end%>
 
