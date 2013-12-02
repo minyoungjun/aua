@@ -2,7 +2,7 @@
 <div class ="white_box">
   <br>
   <div class="black_box">
-    <p><%=@survey.term%></p>
+    <p><%=simple_format(@survey.term)%></p>
   </div>
   <br>
   <form action="/survey/profile_process/<%=@survey.id%>" method="post">
