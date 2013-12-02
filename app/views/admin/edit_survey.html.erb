@@ -1,5 +1,9 @@
 <script>
-  window.scrollTo(0,document.body.scrollHeight);
+// after dom is loaded
+$(function() {
+      // scroll all the way down
+      $('html, body').scrollTop($(document).height() - $(window).height());
+      });
 </script>
 <%=render "top"%>
 
