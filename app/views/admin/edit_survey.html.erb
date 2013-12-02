@@ -23,6 +23,7 @@
           <input type="radio" name="box_type" value = "2">주관식<br>
           <input type="radio" name="box_type" value= "3">그냥 이미지 넣기<br>
           <input type="radio" name="box_type" value= "4">중복응답가능 객관식<br>
+          <input type="radio" name="box_type" value="5">가로로 펼쳐진 객관식(정도 평가)<br>
           <input type="submit" value="질문 생성">
         </form>
       </div>
@@ -37,10 +38,12 @@
               <input type="submit">
             </form>
           </div>
-        <%elsif box.content_type == 1 || box.content_type == 4%>
+        <%elsif box.content_type == 1 || box.content_type == 4 || box.content_type == 5%>
           <div class="add_box">
             <%if box.content_type == 1%>
               <h4>객관식 질문 변경 및 보기 변경</h4>
+            <%elsif box.content_type == 5%>
+              <h4>가로로 펼쳐진 정도평가 변경</h4>
             <%else%>
               <h4>중복응답가능 질문 및 보기 변경</h4>
             <%end%>

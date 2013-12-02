@@ -51,6 +51,7 @@ class AdminController < ApplicationController
     survey = Survey.new
     survey.title = params[:title]
     survey.content = params[:content]
+    survey.term = params[:term]
     survey.save
     redirect_to :action => "edit_survey",
                 :id => survey.id
@@ -114,6 +115,20 @@ class AdminController < ApplicationController
     box.paragraph_id = params[:id]
     box.content_type = params[:box_type].to_i
     box.save
+
+    if box.content_type == 5
+      answer_array = ["전혀 그렇지 않다", "그렇지 않다", "보통이다", "그렇다", "매우 그렇다"]
+      answer_array.each do |answer|
+        example = Example.new
+        example.box_id = box.id
+        example.example_type = 1
+        example.content = answer
+        example.save
+
+      end
+
+    end
+
     redirect_to :back
 
   end

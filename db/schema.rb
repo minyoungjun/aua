@@ -55,12 +55,16 @@ ActiveRecord::Schema.define(:version => 20131129062856) do
   create_table "surveys", :force => true do |t|
     t.string   "title"
     t.string   "content"
+    t.text     "term"
     t.string   "top_image"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
+    t.integer  "survey_id"
+    t.string   "realname"
+    t.string   "department"
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

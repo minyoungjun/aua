@@ -4,6 +4,6 @@
 <div class="white_box" >
   <h1>아래는 진행중인 설문 목록입니다.</h1>
   <% @surveys.each do |survey|%>
-    <a href="/survey/view/<%=survey.id%>"><h2><%=survey.title%></h2></a>
+    <a href="/survey/profile/<%=survey.id%>"><h2><%=survey.title%></h2></a>
   <%end%>
 </div>
