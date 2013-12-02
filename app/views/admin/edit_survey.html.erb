@@ -1,7 +1,17 @@
 <%=render "top"%>
 <div class="white_box">
-  <h1><%=@survey.title%></h1>
-  <h3>편집하기</h3>
+  <h1><%=@survey.title%> 편집하기</h1>
+
+  <h2>개인정보 이용약관</h2>
+  <form action="/admin/content_up/<%=@survey.id%>" method="post">
+    <textarea name="term"><%=@survey.term%></textarea>
+    <h2>설문 내용</h2>
+    <textarea name="content"><%=@survey.content%></textarea>
+    <br>
+    <input type="submit">
+  </form>
+
+
     <form action="/admin/add_paragraph/<%=@survey.id%>">
       <p>로마자 참고: I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII, XIII, XIV, XV, XVI, XVII, XVIII, XIX, XX</p>
       질문 묶음 추가:<input type="text" name="title">

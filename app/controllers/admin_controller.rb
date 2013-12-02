@@ -11,6 +11,7 @@ class AdminController < ApplicationController
 
   end
 
+
   def login_process
 
     if params[:idid] == "admin" && params[:password] == "moon1009"
@@ -26,6 +27,17 @@ class AdminController < ApplicationController
 
     reset_session
     redirect_to :action => "login"
+
+  end
+
+  def content_up
+
+    survey = Survey.find(params[:id])
+    survey.term = params[:term]
+    survey.content = params[:content]
+    survey.save
+
+    redirect_to :back
 
   end
 
