@@ -19,7 +19,7 @@
           <%if box.content_type == 3%>
             <img src="/images/<%=box.image_path%>"/><br>
           <%elsif box.content_type == 2%>
-            <h3><%=box.question%></h3>
+            <h3><%=simple_format(box.question)%></h3>
             <textarea class="question_box" name="box_answer_<%=box.id%>"></textarea>
           <%else%>
           <div class="box">
