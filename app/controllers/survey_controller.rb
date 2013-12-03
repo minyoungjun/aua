@@ -40,15 +40,16 @@ class SurveyController < ApplicationController
           long.content = params["box_answer_" + box.id.to_s]
           long.save
         else
-          if box.content_type == 1|| box.content_type == 5
-            answer = Answer.new
-            answer.example_id = params["box_" + box.id.to_s]
-              if Example.find(params["box_" + box.id.to_s].to_i).example_type == 2
-                answer.etc_answer = params["etc_" + example.id.to_s]
-              end
-            answer.save
+          if box.content_type == 1 || box.content_type == 5
+            if params["box_" + box.id.to_s] != nil
+              answer = Answer.new
+              answer.example_id = params["box_" + box.id.to_s]
+                if Example.find(params["box_" + box.id.to_s].to_i).example_type == 2
+                  answer.etc_answer = params["etc_" + example.id.to_s]
+                end
+              answer.save
+            end
           else
-
             box.examples.each do |example|
               if params["example_"+ example.id.to_s].to_i == example.id
                 answer = Answer.new
