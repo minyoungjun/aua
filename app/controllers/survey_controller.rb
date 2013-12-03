@@ -44,8 +44,9 @@ class SurveyController < ApplicationController
             if params["box_" + box.id.to_s] != nil
               answer = Answer.new
               answer.example_id = params["box_" + box.id.to_s]
-                if Example.where(:id => params["box_" + box.id.to_s].to_i).count != 0 && Example.where(:id => params["box_" + box.id.to_s].to_i).first.example_type == 2
-                  answer.etc_answer = params["etc_" + example.id.to_s]
+              exam = Example.where(:id => params["box_" + box.id.to_s].to_i)
+                if exam.count != 0 && exam.first.example_type == 2
+                  answer.etc_answer = params["etc_" + exam.first.id.to_s]
                 end
               answer.save
             end
