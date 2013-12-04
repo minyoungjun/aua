@@ -1,4 +1,8 @@
 
 <div style="background:url('/images/top_bar.jpg'); margin:0 auto; width:100%; text-align:center;">
-  <img src="/images/top_image.jpg"/>
+  <%if @survey.id == 2%>
+    <img src="/images/top_image2.jpg"/>
+  <%else%>
+    <img src="/images/top_image.jpg"/>
+  <%end%>
 </div>
