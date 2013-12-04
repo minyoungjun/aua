@@ -18,6 +18,7 @@ class SurveyController < ApplicationController
     user.department = params[:department]
     user.phone = params[:phone1] + "-" + params[:phone2] + "-" + params[:phone3]
     user.save
+    session[:user] = user.id
 
     redirect_to :action => "view",
                 :id => user.survey_id
@@ -44,6 +45,7 @@ class SurveyController < ApplicationController
             if params["box_" + box.id.to_s] != nil
               answer = Answer.new
               answer.example_id = params["box_" + box.id.to_s]
+              answer.user_id = session[:user]
               exam = Example.where(:id => params["box_" + box.id.to_s].to_i)
                 if exam.count != 0 && exam.first.example_type == 2
                   answer.etc_answer = params["etc_" + exam.first.id.to_s]
@@ -55,6 +57,7 @@ class SurveyController < ApplicationController
               if params["example_"+ example.id.to_s].to_i == example.id
                 answer = Answer.new
                 answer.example_id = example.id
+                answer.user_id = session[:user]
                 if example.example_type == 2
                   answer.etc_answer = params["etc_" + example.id.to_s]
                 end
