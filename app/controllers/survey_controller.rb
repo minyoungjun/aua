@@ -73,7 +73,14 @@ class SurveyController < ApplicationController
       end
     end
 
-    redirect_to :action => "complete"
+    redirect_to :action => "complete",
+                :id => survey.id
+  end
+
+  def complete
+
+  @survey = Survey.find(params[:id])
+
 
   end
 
