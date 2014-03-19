@@ -54,6 +54,7 @@ $(function() {
             <%else%>
               <h4>중복응답가능 질문 및 보기 변경</h4>
             <%end%>
+            <a href="/admin/delete_box/<%=box.id%>">질문 삭제하기(되돌릴 수 없습니다.)</a>
             <form action="/admin/edit_box/<%=box.id%>" method="post">
               <textarea class="question_box" name="question"><%=box.question%></textarea>
               <input type="submit" value="변경">

@@ -2,7 +2,12 @@
 
 class AdminController < ApplicationController
   before_filter :is_admin, :except => [:login, :login_process]
+  def delete_box
+    box = Box.find(params[:id])
+    box.delete
+    redirect_to :back
 
+  end
   def index
     @surveys = Survey.all
   end
