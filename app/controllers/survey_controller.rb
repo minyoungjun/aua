@@ -7,13 +7,14 @@ class SurveyController < ApplicationController
   def profile
 
     @survey = Survey.find(params[:id])
-
+    @curriculum = Curriculum.find(params[:curriculum])
   end
 
   def profile_process
 
     user = User.new
     user.survey_id = params[:id]
+    user.curriculum_id = params[:curriculum]
     user.realname = params[:realname]
     user.department = params[:department]
     user.phone = params[:phone1] + "-" + params[:phone2] + "-" + params[:phone3]
