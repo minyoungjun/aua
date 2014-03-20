@@ -2,7 +2,7 @@
 <%=render "top"%>
 
 <div class="white_box" >
-  <form action="/survey/submit_process/<%=@survey.id%>" method="post">
+  <form action="/survey/submit_process/<%=@survey.id%>" method="post" name="survey_form">
     <div style="border-top:2px solid #356fb8; width:900px; border-bottom:2px solid #356fb8; padding-left:20px; margin-bottom:30px;margin-top:20px;">
       <h1><%=@survey.title%></h1>
     </div>
@@ -45,9 +45,31 @@
     </div>
 
   <%end%>
-  <div style="text-align:center;">
-    <input type="submit" value ="설문 제출">
-  </div>
+    <input type="submit" value ="설문 제출"id="survey_submit" style="display:none;">
   </form>
+  <div style="text-align:center;">
+    <button onclick="surveysubmit();">설문 제출</button>
+  </div>
 
 </div>
+<script>
+function surveysubmit(){
+  <%@survey.paragraphs.each do |paragraph|%>
+    <%paragraph.boxes.each do |box|%>
+      var radioObj = document.survey_form.box_<%=box.id%>;
+      var isChecked = false;
+    for (i = 0; i < radioObj.length; i ++){
+      if (radioObj[i].checked){
+        isChecked = true;
+        break;
+      }
+    }
+    if(!isChecked){
+      alert("<%=box.question%>문항에 답변을 해주세요.");
+      return false;
+    }
+    <%end%>
+  <%end%>
+    $('#survey_submit').trigger('click');
+  }
+</script>
