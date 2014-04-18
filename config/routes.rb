@@ -66,7 +66,7 @@ Aua::Application.routes.draw do
    post 'admin/edit_box/:id' => 'admin#edit_box', :format => false
    post 'admin/edit_example/:id' => 'admin#edit_example', :format => false
    post 'admin/delete_example/:id' => 'admin#delete_example', :format => false
-   post 'admin/add_example/:id' => 'admin#add_example, :format => false'
+   post 'admin/add_example/:id' => 'admin#add_example', :format => false
    post 'admin/add_box/:id' => 'admin#add_box', :format => false
    post 'admin/add_paragraph/:id' => 'admin#add_paragraph', :format => false
    get 'admin/edit_survey/:id' => 'admin#edit_survey', :format => false
